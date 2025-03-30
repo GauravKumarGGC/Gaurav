@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Kumar - Professional Bio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Light Theme */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #121212;
+            --light: #f5f6fa;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --primary: #e056fd;
+            --secondary: #ffbe76;
+            --dark: #1e272e;
+            --light: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Particle Network */
+        #particle-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--dark);
+        }
+
+        /* Bubble Animation */
+        .bubble-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-200px);
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+            margin: 0 auto 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.8);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(108, 92, 231, 0.3);
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .bio-card {
+            background: rgba(45, 52, 54, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .bio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            background: rgba(108, 92, 231, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .theme-toggle-btn {
+            padding: 10px 20px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--secondary);
+        }
+
+        .greeting {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Double Background Animations -->
+    <div id="particle-network"></div>
+    <div class="bubble-bg" id="bubble-container"></div>
+
+    <div class="container">
+        <header>
+            <img src="https://i.ibb.co/4wMv0N5q/IMG-20250330-194626-413.jpg" alt="Gaurav Kumar" class="profile-img">
+            <h1>Gaurav Kumar</h1>
+            <div class="tagline">Multitalented Developer & Content Creator</div>
+        </header>
+
+        <div class="bio-card">
+            <div class="info-grid">
+                <div>
+                    <div class="info-label">📛 Name</div>
+                    <div class="info-value">Gaurav Kumar</div>
+                </div>
+                <div>
+                    <div class="info-label">🎂 Age</div>
+                    <div class="info-value">17</div>
+                </div>
+                <div>
+                    <div class="info-label">📍 Location</div>
+                    <div class="info-value">Rajasthan, India</div>
+                </div>
+                <div>
+                    <div class="info-label">🎓 Study</div>
+                    <div class="info-value">12th Pass</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio-card">
+            <div class="info-label">💻 Skills</div>
+            <div class="skills">
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Python</div>
+                <div class="skill">Telegram Bot Development</div>
+                <div class="skill">Photo Editing</div>
+                <div class="skill">Video Editing</div>
+            </div>
+        </div>
+
+        <div class="bio-card">
+            <div class="info-label">🎥 Experience</div>
+            <div class="info-value">YouTube & Telegram Channel Management</div>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn">🌗 Switch Theme</button>
+
+        <footer>
+            Crafted with ❤️ by Gaurav Kumar <br>
+            <div class="greeting">“Karma Never Dies” 😎</div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle Script
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.dataset.theme = 
+                document.documentElement.dataset.theme === 'dark' ? '' : 'dark';
+            themeToggleBtn.innerHTML = 
+                document.documentElement.dataset.theme === 'dark' ? '☀️ Light Mode' : '🌗 Dark Mode';
+        });
+
+        // Disable Right-Click and Copy
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // Disable right-click
+        });
+
+        // Disable Ctrl + C, Ctrl + X, and Ctrl + U
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'x' || e.key === 'X' || e.key === 'u' || e.key === 'U')) {
+                e.preventDefault(); // Disable copy, cut, and view-source
+            }
+        });
+
+        // Disable Text Copying
+        document.addEventListener('copy', function(e) {
+            e.preventDefault(); // Block copying text
+            alert('⚠️ Copying is not allowed!');
+        });
+
+        // Particle Network Animation
+        const canvas = document.createElement('canvas');
+        document.getElementById('particle-network').appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        const particles = [];
+        const particleCount = window.innerWidth < 768 ? 30 : 80;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `rgba(108, 92, 231, ${Math.random() * 0.5 + 0.1})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(108, 92, 231, ${1 - distance/150})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Bubble Animation
+        function createBubbles() {
+            const container = document.getElementById('bubble-container');
+            const bubbleCount = 8;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                // Random properties for each bubble
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.width = (Math.random() * 60 + 20) + 'px';
+                bubble.style.height = bubble.style.width;
+                bubble.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                bubble.style.animationDelay = (Math.random() * 5) + 's';
+                bubble.style.opacity = Math.random() * 0.5 + 0.1;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        // Initialize Animations
+        initParticles();
+        animateParticles();
+        createBubbles();
+    </script>
+</body>
+</html>
